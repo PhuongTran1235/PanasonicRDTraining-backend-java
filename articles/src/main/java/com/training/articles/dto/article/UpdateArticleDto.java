@@ -1,4 +1,4 @@
-package com.training.articles.dto;
+package com.training.articles.dto.article;
 
 import lombok.Data;
 

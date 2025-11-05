@@ -1,4 +1,4 @@
-package com.training.articles.dto;
+package com.training.articles.dto.user;
 
 import lombok.Data;
 import lombok.NonNull;

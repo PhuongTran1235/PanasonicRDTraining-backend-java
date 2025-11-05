@@ -1,12 +1,12 @@
 package com.training.articles.service;
 
 import com.training.articles.dao.UserRepository;
-import com.training.articles.dto.CreateUserDto;
-import com.training.articles.dto.UpdateUserDto;
+import com.training.articles.dto.user.CreateUserDto;
+import com.training.articles.dto.SearchDto;
+import com.training.articles.dto.user.UpdateUserDto;
 import com.training.articles.model.Users;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -39,8 +39,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public List<Users> getAllUsers() {
-        return userRepository.findAll();
+    public Page<Users> queryListUser(SearchDto searchUserDto) {
+        return userRepository.searchByNameOrEmail(searchUserDto.getSearch(), searchUserDto.toPageable());
     }
 
 }
