@@ -13,10 +13,7 @@ public class Articles {
 
     private String title;
     private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Users author;
+    private String authorId;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

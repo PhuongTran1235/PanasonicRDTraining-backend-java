@@ -2,6 +2,7 @@ package com.training.articles.service;
 
 import com.training.articles.dao.ArticlesRepository;
 import com.training.articles.dao.CategoryRepository;
+import com.training.articles.dto.ResponseDto;
 import com.training.articles.dto.SearchDto;
 import com.training.articles.dto.article.CreateArticleaDto;
 import com.training.articles.dto.article.UpdateArticleDto;
@@ -50,5 +51,17 @@ public class ArticlesService {
 
     public Page<Articles> searchByTitleOrAuthorOrCategory(SearchDto searchDto){
     return articlesRepository.searchByTitleAuthorOrCategory(searchDto.getSearch(), searchDto.toPageable());
+    }
+
+    public Articles getArticleById(Long articleId) {
+        return articlesRepository.findById(articleId).orElseThrow(()
+                -> new RuntimeException("Article not found"));
+    }
+
+    public ResponseDto deleteArticleById(Long articleId) {
+        articlesRepository.deleteById(articleId);
+        var response = new  ResponseDto();
+        response.setResult(String.format("Delete article %s successful", articleId));
+        return response;
     }
 }
